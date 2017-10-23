@@ -1,9 +1,13 @@
 import colors from 'colors';
+import Bittrex from './bittrex';
 
-export default function hello(user = 'World') {
-  return `Hello ${user}!\n`.blue;
+function init() {
+  const bittrex = new Bittrex();
+  bittrex.getMarkets();
+  return colors.green('App start:\n\n');
+  setInterval(init(), 5000);
 }
 
 if (require.main === module) {
-  process.stdout.write(hello());
+  process.stdout.write(init());
 }
